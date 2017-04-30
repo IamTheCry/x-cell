@@ -15,8 +15,8 @@ const createEl = function(tagName) {
 };
 
 const createTR = createEl('TR');
-const createTR = createEl('TH');
-const createTR = createEl('TD');
+const createTH = createEl('TH');
+const createTD = createEl('TD');
 
 module.exports = {
 	createTR: createTR,
