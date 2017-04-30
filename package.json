@@ -1,0 +1,11 @@
+{
+  "name": "x-cell",
+  "version": "1.0.0",
+  "description": "tiny spreadsheet app assembled by thecry",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "thecry <cchau005@ucr.edu>",
+  "license": "MIT"
+}
