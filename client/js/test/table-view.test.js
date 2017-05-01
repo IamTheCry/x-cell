@@ -12,6 +12,27 @@ describe('table-view', () => {
 
 	});
 
+	describe('footer sums', () => {
+		it('sums a column and displays it on bottom row', () => {
+			// set up initial state
+			const model = new TableModel(3,3);
+			const view = new TableView(model);
+			view.init();
+
+			// inspect initial state
+			let trs = document.querySelectorAll('TFOOT');
+			let td = trs[0].cells[0];
+			expect(td.textContent).toBe('');
+
+			// simulate user action
+			model.setValue({col: 0, row: 0}, '10');
+
+			// inspect the resulting state
+			trs = document.querySelectorAll('TFOOT');
+			expect(trs[0].cells[0].textContent).toBe('10');
+		})
+	})
+
 	describe('formula bar', () => {
 
 		it('makes changes TO the value of the current cell', () => {

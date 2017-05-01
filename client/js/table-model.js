@@ -17,6 +17,19 @@ class TableModel {
 	setValue(location, value) {
 		this.data[this._getCellID(location)] = value;
 	}
+
+	calcSum(numCols, numRows) {
+		for (let col = 0 ; col < numCols ; col++) {
+			let sums = 0;
+			for (let row = 0 ; row < numRows ; row++) {
+				const value = Number(this.getValue({col: col, row: row}));
+				if (!isNaN(value)) {
+					sums += value;
+					console.log(sums);
+				}
+			}
+		}
+	}
 }
 
 module.exports = TableModel;

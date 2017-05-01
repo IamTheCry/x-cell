@@ -71,6 +71,19 @@ class TableModel {
 	setValue(location, value) {
 		this.data[this._getCellID(location)] = value;
 	}
+
+	calcSum(numCols, numRows) {
+		for (let col = 0 ; col < numCols ; col++) {
+			let sums = 0;
+			for (let row = 0 ; row < numRows ; row++) {
+				const value = Number(this.getValue({col: col, row: row}));
+				if (!isNaN(value)) {
+					sums += value;
+					console.log(sums);
+				}
+			}
+		}
+	}
 }
 
 module.exports = TableModel;
@@ -155,17 +168,22 @@ class TableView {
 
 	renderTableFooter() {
 		removeChildren(this.footerEl);
-		for (let col = 0 ; col < this.model.numCols ; col++) {
-			let sums = 0;
-			for (let row = 0 ; row < this.model.numRows ; row++) {
-				const value = Number(this.model.getValue({col: col, row: row}));
-				if (!isNaN(value)) {
-					sums += value;
-				}
-			}
-			this.footerEl.appendChild(createTD(sums));
-		}
+		this.model.calcSum(this.model.numCols,this.model.numRows);
+		this.footerEl.appendChild(createTD(this.sums));
 	}
+	// direct way, commented to try using table-model exports
+	// 	removeChildren(this.footerEl);
+	// 	for (let col = 0 ; col < this.model.numCols ; col++) {
+	// 		let sums = 0;
+	// 		for (let row = 0 ; row < this.model.numRows ; row++) {
+	// 			const value = Number(this.model.getValue({col: col, row: row}));
+	// 			if (!isNaN(value)) {
+	// 				sums += value;
+	// 			}
+	// 		}
+	// 		this.footerEl.appendChild(createTD(sums));
+	// 	}
+	// }
 
 	attachEventHandlers() {
 		this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
