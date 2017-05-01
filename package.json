@@ -1,5 +1,5 @@
 {
-  "name": "x-cell-sum feature",
+  "name": "x-cell",
   "version": "1.0.0",
   "description": "tiny spreadsheet app assembled by thecry",
   "main": "index.js",
