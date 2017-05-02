@@ -18,17 +18,24 @@ class TableModel {
 		this.data[this._getCellID(location)] = value;
 	}
 
-	calcSum(numCols, numRows) {
-		for (let col = 0 ; col < numCols ; col++) {
-			let sums = 0;
-			for (let row = 0 ; row < numRows ; row++) {
-				const value = Number(this.getValue({col: col, row: row}));
-				if (!isNaN(value)) {
-					sums += value;
-					console.log(sums);
-				}
+	calcColumnSum(col) {
+		let sums = 0;
+		for (let row = 0 ; row < this.numRows ; row++) {
+			let value = Number(this.getValue({col: col, row: row}));
+			if (!isNaN(value)) {
+				sums += value;
 			}
-		}
+		}return sums;
+
+		
+			// for (let row = 0 ; row < this.numRows ; row++) {
+			// 	this.position = {col: col, row: row};
+			// 	const sums = 0;
+			// 	const value = Number(this.getValue(position));
+			// 	if (!isNaN(value)) {
+			// 		sums += value;
+			// 	}return sums;
+			// }
 	}
 }
 

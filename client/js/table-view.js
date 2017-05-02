@@ -78,8 +78,10 @@ class TableView {
 
 	renderTableFooter() {
 		removeChildren(this.footerEl);
-		this.model.calcSum(this.model.numCols,this.model.numRows);
-		this.footerEl.appendChild(createTD(this.sums));
+		for (let col = 0 ; col < this.model.numCols ; col++) {
+			//this.model.calcColumnSum();
+			this.footerEl.appendChild(createTD(this.model.calcColumnSum(col)));
+		}
 	}
 	// direct way, commented to try using table-model exports
 	// 	removeChildren(this.footerEl);
