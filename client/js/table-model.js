@@ -26,16 +26,6 @@ class TableModel {
 				sums += value;
 			}
 		}return sums;
-
-		
-			// for (let row = 0 ; row < this.numRows ; row++) {
-			// 	this.position = {col: col, row: row};
-			// 	const sums = 0;
-			// 	const value = Number(this.getValue(position));
-			// 	if (!isNaN(value)) {
-			// 		sums += value;
-			// 	}return sums;
-			// }
 	}
 }
 

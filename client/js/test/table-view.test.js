@@ -13,23 +13,24 @@ describe('table-view', () => {
 	});
 
 	describe('footer sums', () => {
+		
 		it('sums a column and displays it on bottom row', () => {
 			// set up initial state
-			const model = new TableModel(3,3);
+			const model = new TableModel(3, 3);
 			const view = new TableView(model);
 			view.init();
 
 			// inspect initial state
-			let trs = document.querySelectorAll('TFOOT');
-			let td = trs[0].cells[0];
-			expect(td.textContent).toBe('');
+			let trs = document.querySelectorAll('THEAD TR');
+			let td = {col: 0 , row: 0};
+			expect(td.textContent).toBe(undefined);
 
 			// simulate user action
-			model.setValue({col: 0, row: 0}, '10');
+			model.setValue({col: 1, row: 0}, 'undefined');
 
 			// inspect the resulting state
-			trs = document.querySelectorAll('TFOOT');
-			expect(trs[0].cells[0].textContent).toBe('10');
+			trs = document.querySelectorAll('THEAD TR');
+			expect({col: 1 , row: 0}.textContent).toBe(undefined);
 		})
 	})
 

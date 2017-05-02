@@ -79,23 +79,9 @@ class TableView {
 	renderTableFooter() {
 		removeChildren(this.footerEl);
 		for (let col = 0 ; col < this.model.numCols ; col++) {
-			//this.model.calcColumnSum();
 			this.footerEl.appendChild(createTD(this.model.calcColumnSum(col)));
 		}
 	}
-	// direct way, commented to try using table-model exports
-	// 	removeChildren(this.footerEl);
-	// 	for (let col = 0 ; col < this.model.numCols ; col++) {
-	// 		let sums = 0;
-	// 		for (let row = 0 ; row < this.model.numRows ; row++) {
-	// 			const value = Number(this.model.getValue({col: col, row: row}));
-	// 			if (!isNaN(value)) {
-	// 				sums += value;
-	// 			}
-	// 		}
-	// 		this.footerEl.appendChild(createTD(sums));
-	// 	}
-	// }
 
 	attachEventHandlers() {
 		this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
