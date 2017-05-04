@@ -44,7 +44,7 @@ class TableView {
 	renderTableHeader() {
 		// clear header row
 		removeChildren(this.headerRowEl);
-		// get letters and build elements
+		// get letters and build elements for header row
 		getLetterRange('A', this.model.numCols)
 		  .map(colLabel => createTH(colLabel))
 		  .forEach(th => this.headerRowEl.appendChild(th));
