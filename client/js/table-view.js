@@ -17,6 +17,7 @@ class TableView {
 		this.headerRowEl = document.querySelector('THEAD TR');
 		this.sheetBodyEl = document.querySelector('TBODY');
 		this.formulaBarEl = document.querySelector('#formula-bar');
+		this.footerEl = document.querySelector('TFOOT');
 	}
 
 	initCurrentCell() {
@@ -37,12 +38,13 @@ class TableView {
 	renderTable() {
 		this.renderTableHeader();
 		this.renderTableBody();
+		this.renderTableFooter();
 	}
 
 	renderTableHeader() {
 		// clear header row
 		removeChildren(this.headerRowEl);
-		// get letters and build elements
+		// get letters and build elements for header row
 		getLetterRange('A', this.model.numCols)
 		  .map(colLabel => createTH(colLabel))
 		  .forEach(th => this.headerRowEl.appendChild(th));
@@ -74,6 +76,13 @@ class TableView {
 		this.sheetBodyEl.appendChild(fragment);
 	}
 
+	renderTableFooter() {
+		removeChildren(this.footerEl);
+		for (let col = 0 ; col < this.model.numCols ; col++) {
+			this.footerEl.appendChild(createTD(this.model.calcColumnSum(col)));
+		}
+	}
+
 	attachEventHandlers() {
 		this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
 		this.formulaBarEl.addEventListener('keyup', this.handleFormulaBarChange.bind(this));
@@ -83,6 +92,7 @@ class TableView {
 		const value = this.formulaBarEl.value;
 		this.model.setValue(this.currentCellLocation, value);
 		this.renderTableBody();
+		this.renderTableFooter();
 	}
 
 	handleSheetClick(evt) {
@@ -92,7 +102,7 @@ class TableView {
 
 		this.currentCellLocation = { col: col, row: row };
 		this.renderTableBody();
-		this.renderFormulaBar(); 
+		this.renderFormulaBar();
 	}
 }
 

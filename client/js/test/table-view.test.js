@@ -12,6 +12,67 @@ describe('table-view', () => {
 
 	});
 
+	describe('table footer', () => {
+		
+		it('sums a column and displays it on bottom row', () => {
+			// set up initial state
+			const model = new TableModel(3, 3);
+			const view = new TableView(model);
+			view.init();
+			view.renderTableFooter();
+
+			// inspect initial state
+			let footerRow = document.querySelectorAll('TFOOT TD');
+ 	    expect(footerRow.length).toBe(3);
+  
+			// simulate user action
+			model.setValue({col: 2, row: 0}, '2');
+      model.setValue({col: 2, row: 1}, '3');
+      model.setValue({col: 2, row: 2}, '5');
+      view.renderTableBody();
+      view.renderTableFooter();
+
+      // inspect the resulting table state
+      let rows = document.querySelectorAll('TBODY TR');
+      expect(rows[2].textContent).toBe('5');
+      view.renderTableFooter();
+
+			// inspect the resulting footer state
+
+			const footerCells = document.querySelectorAll('TFOOT TD');
+      expect(footerCells[2].textContent).toBe('10');
+  		})
+
+			it('sums a column and displays it on bottom row', () => {
+			// set up initial state
+			const model = new TableModel(4, 4);
+			const view = new TableView(model);
+			view.init();
+			//view.renderTableFooter();
+
+			// inspect initial state
+			let footerRow = document.querySelectorAll('TFOOT TD');
+ 	    expect(footerRow.length).toBe(4);
+  
+			// simulate user action
+			model.setValue({col: 2, row: 0}, '2');
+      model.setValue({col: 1, row: 2}, '3');
+      model.setValue({col: 2, row: 2}, '5');
+      view.renderTableBody();
+      view.renderTableFooter();
+
+      // inspect the resulting table state
+      let rows = document.querySelectorAll('TBODY TR');
+      expect(rows[2].cells[2].textContent).toBe('5');
+      //view.renderTableFooter();
+
+			// inspect the resulting footer state
+
+			const footerCells = document.querySelectorAll('TFOOT TD');
+      expect(footerCells[2].textContent).toBe('7');
+  		})
+	})
+
 	describe('formula bar', () => {
 
 		it('makes changes TO the value of the current cell', () => {
